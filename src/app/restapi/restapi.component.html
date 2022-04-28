@@ -1,21 +1,39 @@
 <h1>GIAO DIỆN</h1>
-<!-- {{heroes|json}}
-{{api}}
-{{chohungso}}
-{{ hungdulieu}} -->
-<!-- <ul>
-  <li *ngFor="let hero of heroes">
-    {{hero.id}}
-    {{hero.name}}
-  </li>
-</ul> -->
-<article class="article button-action">
-  <button mat-button (click)="openDialog()">
-      <span>Thêm</span>
+
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
   </button>
-</article>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<!-- <article class="article button-action">
+  <button mat-icon-button class="example-icon" (click)="openDialog()">
+    <span>Thêm</span>
+  </button>
+  <button mat-raised-button >Thêm</button>
+</article> -->
+<button mat-raised-button (click)="openDialog()">Thêm</button><br />
 <mat-form-field appearance="standard">
-  <input matInput matInput (keyup)="applyFilter($event)"#input>
+  <input matInput matInput (keyup)="applyFilter($event)" #input />
 </mat-form-field>
 <table mat-table [dataSource]="html" class="mat-elevation-z8 api">
   <!-- ID Column -->
@@ -44,12 +62,17 @@
   <ng-contaier matColumnDef="menu">
     <th mat-header-cell *matHeaderCellDef>Menu</th>
     <td mat-cell *matCellDef="let element">
-      <button >Delete</button>
-      <button>Fix</button>
+      <button mat-button (click)="deleteDialog(element)">Delete</button>
+      <button mat-button (click)="editDialog(element)">Edit</button>
+      <button mat-button (click)="InfoDialog(element)">Xem Thông Tin</button>
     </td>
-    
   </ng-contaier>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<form [formGroup]="addformGroup">
+  <input type="text" formControlName="name" />
+  <input type="email" formControlName="email" />
+  <input type="number" formControlName="age" />
+</form>
